@@ -33,7 +33,18 @@ Snake.prototype.eatApple = function() {
 }
 
 Snake.prototype.turn = function(newDir) {
-  this.dir = newDir;
+  var that = this;
+  var invalidTurns = [['N', 'S'], ['S', 'N'], ['E', 'W'], ['W', 'E']];
+  var validMove = true;
+  invalidTurns.forEach(function(turn) {
+    if(that.dir === turn[0] && newDir === turn[1]) {
+      validMove = false;
+    }
+  })
+
+  if(validMove) { 
+    this.dir = newDir; 
+  }
 };
 
 Snake.prototype.getDirection = function() {
