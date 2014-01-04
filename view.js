@@ -12,18 +12,29 @@ $(document).ready(function() {
 
 function View() {
   this.board = new Board();
+  this.SPEED = 100;
 };
 
 View.prototype.run = function() {
   this.render();
-  this.interval = setInterval(this.step.bind(this), 200)
+  this.interval = setInterval(this.step.bind(this), this.SPEED)
 };
 
 View.prototype.step = function() {
   this.board.snake.move();
-  this.board.updateGrid();
   this.board.checkAppleEaten();
+  this.board.updateGrid();
+
   this.render();
+  this.checkGameOver()
+};
+
+View.prototype.checkGameOver = function() {
+  if(this.board.checkGameOver()) {
+    clearInterval(this.interval);
+    alert("sorry, you lose!");
+    return true;
+  }
 };
 
 View.prototype.render = function() {
@@ -33,7 +44,30 @@ View.prototype.render = function() {
       this.updateCellClass(i, j);
     }
   }
+
+  this.renderScore();
 };
+
+View.prototype.renderScore = function() {
+  var start = parseInt($('#score').text())
+  var end = this.board.score
+
+  // Animate the element's value from x to y:
+  $({score: start}).animate({score: end}, {
+      duration: 100,
+      step: function() { 
+          $('#score').text(commaSeparateNumber(Math.round(this.score)));
+      }
+  });
+
+ function commaSeparateNumber(val){
+    while (/(\d+)(\d{3})/.test(val.toString())){
+      val = val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+    }
+    return val;
+  }
+};
+
 
 View.prototype.clearCellClasses = function() {
   $('.cell').attr('class', 'cell');
@@ -50,6 +84,9 @@ View.prototype.updateCellClass = function(row, col) {
       break;
     case "A":
       classToAdd = "apple"
+      break;
+    case "SS":
+      classToAdd = "snakeOverlap"
       break;
   }
 

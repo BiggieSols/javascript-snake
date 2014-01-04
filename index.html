@@ -7,10 +7,10 @@
     <script src="board.js"></script>
     <script src="view.js"></script>
     <style type="text/css">
-      .wrapper {
-        width: 400px;
+      html body {
+        overflow: hidden;
+        height: 100%;
       }
-
       .cell {
         background-color: gray;
         height: 20px;
@@ -29,6 +29,23 @@
         border: 1px solid green;
       }
 
+      .snakeOverlap {
+        background-color: orange;
+        background-color: 1px solid orange;
+      }
+
+      .wrapper {
+        width: 400px;
+        height: 400px;
+        margin: 3px;
+        padding: 4px;
+      }
+
+      .score-display {
+        font-size: 25px;
+      }
+
+
     </style>
   
 
@@ -39,7 +56,11 @@
     <h3>Use arrow keys to move your snake</h3>
     <p>eat apples to grow your snake, run into a wall or yourself and you're dead!</p>
 
+    <div class="score-display">Score: 
+      <span id="score" class="score-display"></span>
+    </div>
+
     <div class="wrapper"></div>
-    <br><br><br>
+    <br><br><br><br><br>
   </body>
 </html>

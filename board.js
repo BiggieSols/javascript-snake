@@ -1,13 +1,22 @@
 function Board() {
   this.snake = new Snake();
-  this.apples = [[10, 10]];
+  this.apples = [];
   this.DIMENSION = 20;
   this.grid = this.createGrid();
   this.updateGrid();
+  this.score = 0
 };
 
 Board.prototype.checkGameOver = function() {
+  return (this.outOfBounds() || this.snake.isOverlapping());
+}
 
+Board.prototype.outOfBounds = function() {
+  var snakeHead = this.snake.segments[0];
+  if(snakeHead[0] < 0 || snakeHead[0] >= this.DIMENSION || 
+      snakeHead[1] < 0 || snakeHead[1] > this.DIMENSION) {
+        return true
+  }
 }
 
 Board.prototype.checkAppleEaten = function() {
@@ -16,10 +25,15 @@ Board.prototype.checkAppleEaten = function() {
   this.apples.forEach(function(apple) {
     if(_.isEqual(snakeHead, apple)) {
       that.snake.justAteApple = true;
-      that.removeApple(apple)
+      that.addPoints();
+      that.removeApple(apple);
     }
   })
-}
+};
+
+Board.prototype.addPoints = function() {
+  this.score += 10 * this.snake.segments.length;
+};
 
 Board.prototype.removeApple = function(appleToRemove) {
   for(var i = 0; i < this.apples.length; i++) {
@@ -47,18 +61,17 @@ Board.prototype.generateApple = function() {
 
   if(validPos) {
     this.apples.push(newApple);
-    console.log("new apple added at: " + newApple)
   } else {
     generateApple();
   }
-
-}
+};
 
 Board.prototype.createGrid = function() {
   var newGrid = [];
   for(var i = 0; i < this.DIMENSION; i++) {
     newGrid.push(new Array(this.DIMENSION));
   }
+  this.generateApple();
   return newGrid;
 };
 
@@ -93,7 +106,3 @@ Board.prototype.fillCell = function(i, j) {
     }
   })
 };
-
-// b = new Board();
-// b.updateGrid();
-// console.log(b.grid)
