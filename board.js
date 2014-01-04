@@ -22,16 +22,13 @@ Board.prototype.checkAppleEaten = function() {
 }
 
 Board.prototype.removeApple = function(appleToRemove) {
-  // for(var i = 0; i < this.apples.length; i++) {
-  //   var apple = this.apples[i];
-  //   if(_.isEqual(appleToRemove, apple)) {
-  //     this.apples.splice(i, 1);
-  //     this.generateApple();
-  //   }
-  // }
-  var idxToRemove = _.indexOf(this.apples, appleToRemove)
-  this.apples.splice(idxToRemove, 1);
-  this.generateApple();
+  for(var i = 0; i < this.apples.length; i++) {
+    var apple = this.apples[i];
+    if(_.isEqual(appleToRemove, apple)) {
+      this.apples.splice(i, 1);
+      this.generateApple();
+    }
+  }
 }
 
 Board.prototype.generateApple = function() {

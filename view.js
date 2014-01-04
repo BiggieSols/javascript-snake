@@ -24,7 +24,6 @@ View.prototype.step = function() {
   this.board.updateGrid();
   this.board.checkAppleEaten();
   this.render();
-  console.log(this.board.snake.justAteApple)
 };
 
 View.prototype.render = function() {
