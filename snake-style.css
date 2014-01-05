@@ -1,0 +1,76 @@
+
+html body {
+  overflow: hidden;
+  height: 100%;
+}
+
+body {
+  background-image:url('paper_fibers.png');
+  background-repeat:repeat;
+  color: #2b2a25;
+}
+
+
+h1 {
+  font-size: 40px;
+  color: rgb(240, 240, 240);
+  padding-top: 15px;
+  text-align: center;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+.cell {
+  background-color: gray;
+  height: 20px;
+  width: 20px;
+  border: 1px solid white;
+  float: left;
+  box-sizing: border-box;
+}
+
+.apple {
+  background-color: red;
+}
+
+.snake {
+  /*
+  nothing in here anymore since we render 
+  the gradient dynamically with jQuery 
+  */        
+}
+
+.snakeOverlap {
+  background-color: orange !important;
+  border: 1px solid orange !important;
+}
+
+.above-grid {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.score-display {
+  margin-top: 30px;
+  font-size: 25px;
+  text-align: center;
+}
+
+#grid {
+  width: 400px;
+  height: 400px;
+  margin: auto;
+  padding: 20px;
+}
+
+#header {
+  background-color: #42413e;
+  height: 70px;
+}
+
+#score {
+  font-weight: bold;
+}
+

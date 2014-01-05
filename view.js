@@ -1,7 +1,7 @@
 $(document).ready(function() {
   v = new View();
   for(var i = 0; i < Math.pow(v.board.DIMENSION, 2); i++) {
-    $('.wrapper').append('<div class="cell"></div>')  
+    $('#grid').append('<div class="cell"></div>')  
   }
   v.run();
 
@@ -57,7 +57,7 @@ View.prototype.renderSnake = function() {
   var interval = Math.floor((greenEndVal - greenStartVal) / segs.length);
   segs.forEach(function(seg) {
     var childNum = (seg[0]*20 + seg[1] + 1);
-    $('.wrapper > :nth-child(' + childNum +')')
+    $('#grid > :nth-child(' + childNum +')')
       .css('background-color', 'rgb(0,'+ greenStartVal + ',0');
     greenStartVal += interval;
   })
@@ -113,7 +113,7 @@ View.prototype.updateCellClass = function(row, col) {
   if(classToAdd) {
     // sets the relationship between the grid coordinate and child div
     var childNum = (row * 20 + col) + 1
-    $('.wrapper > :nth-child(' + childNum +')').addClass(classToAdd);
+    $('#grid > :nth-child(' + childNum +')').addClass(classToAdd);
   }
 };
 
