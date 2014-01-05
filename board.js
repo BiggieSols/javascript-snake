@@ -4,20 +4,20 @@ function Board() {
   this.DIMENSION = 20;
   this.grid = this.createGrid();
   this.updateGrid();
-  this.score = 0
+  this.score = 0;
 };
 
 Board.prototype.checkGameOver = function() {
   return (this.outOfBounds() || this.snake.isOverlapping());
-}
+};
 
 Board.prototype.outOfBounds = function() {
   var snakeHead = this.snake.segments[0];
   if(snakeHead[0] < 0 || snakeHead[0] >= this.DIMENSION || 
-      snakeHead[1] < 0 || snakeHead[1] > this.DIMENSION) {
-        return true
+      snakeHead[1] < 0 || snakeHead[1] >= this.DIMENSION) {
+        return true;
   }
-}
+};
 
 Board.prototype.checkAppleEaten = function() {
   var that = this;
@@ -44,7 +44,7 @@ Board.prototype.removeApple = function(appleToRemove) {
       this.generateApple();
     }
   }
-}
+};
 
 Board.prototype.generateApple = function() {
   var xCoord = Math.floor(Math.random() * this.DIMENSION);

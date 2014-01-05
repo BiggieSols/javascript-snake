@@ -44,9 +44,26 @@ View.prototype.render = function() {
       this.updateCellClass(i, j);
     }
   }
-
+  this.renderSnake();
   this.renderScore();
 };
+
+View.prototype.renderSnake = function() {
+  var that = this;
+
+  var segs = this.board.snake.segments;
+  var greenStartVal = 255;
+  var greenEndVal = 100;
+  var interval = Math.floor((greenEndVal - greenStartVal) / segs.length);
+  segs.forEach(function(seg) {
+    var childNum = (seg[0]*20 + seg[1] + 1);
+    $('.wrapper > :nth-child(' + childNum +')')
+      .css('background-color', 'rgb(0,'+ greenStartVal + ',0');
+    greenStartVal += interval;
+  })
+
+
+}
 
 View.prototype.renderScore = function() {
   var start = parseInt($('#score').text().replace(",", ""))
@@ -73,6 +90,7 @@ View.prototype.renderScore = function() {
 
 View.prototype.clearCellClasses = function() {
   $('.cell').attr('class', 'cell');
+  $('.cell').css('background-color', '');
 };
 
 View.prototype.updateCellClass = function(row, col) {
