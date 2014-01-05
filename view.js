@@ -49,7 +49,7 @@ View.prototype.render = function() {
 };
 
 View.prototype.renderScore = function() {
-  var start = parseInt($('#score').text())
+  var start = parseInt($('#score').text().replace(",", ""))
   var end = this.board.score
 
   // Animate the element's value from x to y:
@@ -60,11 +60,13 @@ View.prototype.renderScore = function() {
       }
   });
 
- function commaSeparateNumber(val){
-    while (/(\d+)(\d{3})/.test(val.toString())){
-      val = val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+  function commaSeparateNumber(val){
+    var valArr = val.toString().split("");
+    var len = valArr.length;
+    for(var i = 3; i < len; i += 3) {
+      valArr.splice(len - i, 0, ",");
     }
-    return val;
+    return valArr.join("");
   }
 };
 

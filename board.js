@@ -32,7 +32,7 @@ Board.prototype.checkAppleEaten = function() {
 };
 
 Board.prototype.addPoints = function() {
-  this.score += 10 * this.snake.segments.length;
+  this.score += 1000 * this.snake.segments.length;
 };
 
 Board.prototype.removeApple = function(appleToRemove) {
@@ -40,6 +40,7 @@ Board.prototype.removeApple = function(appleToRemove) {
     var apple = this.apples[i];
     if(_.isEqual(appleToRemove, apple)) {
       this.apples.splice(i, 1);
+
       this.generateApple();
     }
   }
@@ -51,18 +52,20 @@ Board.prototype.generateApple = function() {
   var newApple = [xCoord, yCoord];
   var validPos = true;
 
-  if(_.include(this.snake.segments, newApple)) {
+  if(this.snake.segments.includesArr(newApple)) {
     validPos = false;
+    console.log(newApple + "at invalid position")
+    console.log("snake segments: " + this.snake.segments)
   }
 
-  if(_.include(this.apples, newApple)) {
+  if(this.apples.includesArr(newApple)) {
     validPos = false;
   }
 
   if(validPos) {
     this.apples.push(newApple);
   } else {
-    generateApple();
+    this.generateApple();
   }
 };
 
