@@ -8,6 +8,7 @@ body {
   background-image:url('paper_fibers.png');
   background-repeat:repeat;
   color: #2b2a25;
+  font-family: "Helvetica", sans-serif;
 }
 
 
@@ -29,6 +30,8 @@ h3 {
   border: 1px solid white;
   float: left;
   box-sizing: border-box;
+  -moz-box-sizing: border-box;
+
 }
 
 .apple {
@@ -39,7 +42,9 @@ h3 {
   /*
   nothing in here anymore since we render 
   the gradient dynamically with jQuery 
-  */        
+  */
+  background-color: green;
+  border: 1px solid green;        
 }
 
 .snakeOverlap {
@@ -53,14 +58,13 @@ h3 {
 }
 
 .score-display {
-  margin-top: 30px;
   font-size: 25px;
   text-align: center;
 }
 
 #grid {
-  width: 400px;
-  height: 400px;
+  width: 415px;
+  height: 415px;
   margin: auto;
   padding: 20px;
 }
@@ -74,3 +78,48 @@ h3 {
   font-weight: bold;
 }
 
+#start {
+  -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+  -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+  box-shadow:inset 0px 1px 0px 0px #ffffff;
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
+  background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
+  background-color:#ededed;
+  -webkit-border-top-left-radius:6px;
+  -moz-border-radius-topleft:6px;
+  border-top-left-radius:6px;
+  -webkit-border-top-right-radius:6px;
+  -moz-border-radius-topright:6px;
+  border-top-right-radius:6px;
+  -webkit-border-bottom-right-radius:6px;
+  -moz-border-radius-bottomright:6px;
+  border-bottom-right-radius:6px;
+  -webkit-border-bottom-left-radius:6px;
+  -moz-border-radius-bottomleft:6px;
+  border-bottom-left-radius:6px;
+  text-indent:0;
+  border:1px solid #dcdcdc;
+  display:inline-block;
+  color:#777777;
+  font-family:arial;
+  font-size:15px;
+  font-weight:bold;
+  font-style:normal;
+  height:30px;
+  line-height:15px;
+  width:100px;
+  text-decoration:none;
+  text-align:center;
+  text-shadow:1px 1px 0px #ffffff;
+}
+#start:hover {
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
+  background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
+  background-color:#dfdfdf;
+}#start:active {
+  position:relative;
+  top:1px;
+}</style>
+/* This button was generated using CSSButtonGenerator.com */

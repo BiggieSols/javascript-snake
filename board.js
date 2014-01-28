@@ -2,10 +2,11 @@ function Board() {
   this.snake = new Snake();
   this.apples = [];
   this.DIMENSION = 20;
+  this.APPLECOUNT = 3;
   this.grid = this.createGrid();
   this.updateGrid();
   this.score = 0;
-};
+}
 
 Board.prototype.checkGameOver = function() {
   return (this.outOfBounds() || this.snake.isOverlapping());
@@ -13,7 +14,7 @@ Board.prototype.checkGameOver = function() {
 
 Board.prototype.outOfBounds = function() {
   var snakeHead = this.snake.segments[0];
-  if(snakeHead[0] < 0 || snakeHead[0] >= this.DIMENSION || 
+  if(snakeHead[0] < 0 || snakeHead[0] >= this.DIMENSION ||
       snakeHead[1] < 0 || snakeHead[1] >= this.DIMENSION) {
         return true;
   }
@@ -21,14 +22,14 @@ Board.prototype.outOfBounds = function() {
 
 Board.prototype.checkAppleEaten = function() {
   var that = this;
-  var snakeHead = that.snake.segments[0]
+  var snakeHead = that.snake.segments[0];
   this.apples.forEach(function(apple) {
     if(_.isEqual(snakeHead, apple)) {
       that.snake.justAteApple = true;
       that.addPoints();
       that.removeApple(apple);
     }
-  })
+  });
 };
 
 Board.prototype.addPoints = function() {
@@ -54,8 +55,8 @@ Board.prototype.generateApple = function() {
 
   if(this.snake.segments.includesArr(newApple)) {
     validPos = false;
-    console.log(newApple + "at invalid position")
-    console.log("snake segments: " + this.snake.segments)
+    console.log(newApple + "at invalid position");
+    console.log("snake segments: " + this.snake.segments);
   }
 
   if(this.apples.includesArr(newApple)) {
@@ -74,7 +75,10 @@ Board.prototype.createGrid = function() {
   for(var i = 0; i < this.DIMENSION; i++) {
     newGrid.push(new Array(this.DIMENSION));
   }
-  this.generateApple();
+
+  for(i = 0; i < this.APPLECOUNT; i++) {
+    this.generateApple();
+  }
   return newGrid;
 };
 
@@ -101,11 +105,11 @@ Board.prototype.fillCell = function(i, j) {
     if(seg[0] === i && seg[1] === j) {
       that.grid[i][j] += "S";
     }
-  })
+  });
 
   that.apples.forEach(function(apple){
     if(apple[0] === i && apple[1] === j) {
       that.grid[i][j] += "A";
     }
-  })
+  });
 };
